@@ -2,13 +2,13 @@ services:
   db:
     image: "postgres:${DB_VERSION}"
     environment:
-      PGHOST: "${DB_HOST}"
-      PGUSER: "${DB_USER}"
-      PGDATABASE: "${DB_NAME}" 
-      PGPASSWORD: "${DB_PASSWORD}"
-      PGPORT: "${DB_PORT}"
+      POSTGRES_USER: "${DB_USER}"
+      POSTGRES_DB: "${DB_NAME}"
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
     volumes:
       - immobyte-db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
   web:
     build: .
     env_file:
