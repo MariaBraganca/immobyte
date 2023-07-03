@@ -1,0 +1,25 @@
+services:
+  db:
+    image: "postgres:${DB_VERSION}"
+    environment:
+      PGHOST: "${DB_HOST}"
+      PGUSER: "${DB_USER}"
+      PGDATABASE: "${DB_NAME}" 
+      PGPASSWORD: "${DB_PASSWORD}"
+      PGPORT: "${DB_PORT}"
+    volumes:
+      - immobyte-db-data:/var/lib/postgresql/data
+  web:
+    build: .
+    env_file:
+      - .env
+    user: "${UID}:${GID}"
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/opt/immobyte
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+volumes:
+  immobyte-db-data:
