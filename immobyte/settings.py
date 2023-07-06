@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     
     # apps
     'home',
+    'auctions'
 ]
 
 MIDDLEWARE = [
