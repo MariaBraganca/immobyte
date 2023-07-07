@@ -1,9 +1,8 @@
 from django.urls import path
 
-from auctions.views import list
-from auctions.views import detail
+from auctions.views import AuctionListView, AuctionDetailView
 
 urlpatterns = [
-    path('auctions', list),
-    path('auctions/<int:pk>', detail)
+    path('auctions', AuctionListView.as_view()),
+    path('auctions/<int:pk>', AuctionDetailView.as_view())
 ]

@@ -1,11 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView, DetailView
 from auctions.models import Auction
 
 # Create your views here.
-def list(request):
-    auctions = Auction.objects.all()
-    return render(request, 'auctions/list.html', {'auctions': auctions})
+class AuctionListView(ListView):
+    model = Auction
+    context_object_name = 'auctions'
 
-def detail(request, pk):
-    auction = get_object_or_404(Auction, pk=pk)
-    return render(request, 'auctions/detail.html', { 'auction': auction })
+class AuctionDetailView(DetailView):
+    model = Auction
+    context_object_name = 'auction'
