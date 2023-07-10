@@ -1,3 +1,8 @@
 Django==4.2.2
+# DB
 psycopg==3.1.9
 psycopg-binary==3.1.9
+# TDD
+pytest==7.4.0
+pytest-django==4.5.2
+beautifulsoup4==4.12.2
