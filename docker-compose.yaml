@@ -5,6 +5,7 @@ services:
       POSTGRES_USER: "${DB_USER}"
       POSTGRES_DB: "${DB_NAME}"
       POSTGRES_PASSWORD: "${DB_PASSWORD}"
+    command: postgres -c log_statement=all
     volumes:
       - immobyte-db-data:/var/lib/postgresql/data
     ports:
