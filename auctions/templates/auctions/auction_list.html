@@ -4,10 +4,9 @@
   </head>
   <body>
     <h1>Zwangsversteigerungen</h1>
-    <h3>Alle aktuellen Zwangsversteigerungen in Berlin ansehen!</h3>
+    <h2>Alle aktuellen Zwangsversteigerungen in Berlin ansehen!</h3>
     {% for auction in auctions %}
-      <p><b>{{auction.number}}</b></p>
-      <hr>
+      <h3>{{auction.number}}</h3>
       <p>Objekt/Lage: {{auction.object}} | {{auction.address}}</p>
       <p>Verkehrswert: {{auction.price}}</p>
       <p>Termin: {{auction.appointment}}</p>

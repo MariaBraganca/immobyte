@@ -3,15 +3,19 @@
     <title>Immobyte</title>
   </head>
   <body>
-    <h1>Zwangsversteigerungen</h1>
-    <h3>Alle aktuellen Zwangsversteigerungen in Berlin ansehen!</h3>
-    <p><b>{{auction.number}}</b></p>
-    <hr>
-    <p>Objekt: {{auction.object}}</p>
+    <h1>Zwangsvesteigerung</h1>
+    <h2>{{auction.number}}</h2>
+    <h3>Objekt:</h3>
+    <p>{{auction.object}}</p>
+    <h3>Beschreibung:</h3>
     <p>{{auction.description}}</p>
-    <p>Adresse: {{auction.address}}</p>
-    <p>Verkehrswert: {{auction.price}}</p>
-    <p>Termin: {{auction.appointment}}</p>
-    <p>Gutachten: <a target='_blank' href={{auction.report_url}}>Gutachten.pdf</a></p>
+    <h3>Adresse:</h3>
+    <p>{{auction.address}}</p>
+    <h3>Verkehrswert:</h3>
+    <p>{{auction.price}}</p>
+    <h3>Termin:</h3>
+    <p>{{auction.appointment}}</p>
+    <h3>Gutachten:</h3>
+    <a target='_blank' href={{auction.report_url}}>Gutachten.pdf</a>
   </body>
 </html>
