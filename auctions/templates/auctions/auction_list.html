@@ -1,8 +1,6 @@
-<html>
-  <head>
-    <title>Immobyte</title>
-  </head>
-  <body>
+{% extends 'base.html' %}
+
+{% block content %}
     <h1>Zwangsversteigerungen</h1>
     <h2>Alle aktuellen Zwangsversteigerungen in Berlin ansehen!</h3>
     {% for auction in auctions %}
@@ -11,5 +9,4 @@
       <p>Verkehrswert: {{auction.price}}</p>
       <p>Termin: {{auction.appointment}}</p>
     {% endfor %}
-  </body>
-</html>
+{% endblock %}

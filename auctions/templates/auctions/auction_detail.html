@@ -1,8 +1,6 @@
-<html>
-  <head>
-    <title>Immobyte</title>
-  </head>
-  <body>
+{% extends 'base.html' %}
+
+{% block content %}
     <h1>Zwangsvesteigerung</h1>
     <h2>{{auction.number}}</h2>
     <h3>Objekt:</h3>
@@ -17,5 +15,4 @@
     <p>{{auction.appointment}}</p>
     <h3>Gutachten:</h3>
     <a target='_blank' href={{auction.report_url}}>Gutachten.pdf</a>
-  </body>
-</html>
+{% endblock %}
