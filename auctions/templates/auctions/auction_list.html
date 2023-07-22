@@ -1,12 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Zwangsversteigerungen</h1>
-    <h2>Alle aktuellen Zwangsversteigerungen in Berlin ansehen!</h3>
-    {% for auction in auctions %}
-      <h3>{{auction.number}}</h3>
-      <p>Objekt/Lage: {{auction.object}} | {{auction.address}}</p>
-      <p>Verkehrswert: {{auction.price}}</p>
-      <p>Termin: {{auction.appointment}}</p>
-    {% endfor %}
+  <div>
+    <h1 class="text-base font-semibold"><span class="fa-solid fa-house text-sky-500 inline-block align-text-top"></span> Immobyte</h1>
+    <p class="text-sm font-light text-gray-500 mt-1">Aktuellen Zwangsversteigerungen in Berlin ansehen!</p>
+  </div>
+  <table class="divide-y my-8">
+    <thead>
+      <tr class="text-left">
+        <th class="text-sm font-medium py-4 pr-4">Aktenzeichen</th>
+        <th class="text-sm font-medium p-4">Objekt</th>
+        <th class="text-sm font-medium p-4">Lage</th>
+        <th class="text-sm font-medium p-4">Verkehrswert</th>
+        <th class="text-sm font-medium py-4 pl-4 w-48">Termin</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y">
+      {% for auction in auctions %}
+        <tr class="hover:bg-slate-50">
+          <td class="text-sm font-medium py-4 pr-4">{{auction.number}}</td>
+          <td class="text-sm text-gray-700 leading-6 p-4">{{auction.object}}</td>
+          <td class="text-sm text-gray-700 leading-6 p-4">{{auction.address}}</td>
+          <td class="text-sm text-gray-700 leading-6 p-4">{{auction.price}}</td>
+          <td class="text-sm text-gray-700 leading-6 py-4 pl-4">{{auction.appointment}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 {% endblock %}
