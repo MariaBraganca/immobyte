@@ -567,8 +567,8 @@ video {
   display: grid;
 }
 
-.w-48 {
-  width: 12rem;
+.w-full {
+  width: 100%;
 }
 
 .grid-cols-3 {
@@ -655,7 +655,7 @@ video {
   color: rgb(14 165 233 / var(--tw-text-opacity));
 }
 
-.hover\:bg-slate-50:hover {
+.hover\:bg-gray-50:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(248 250 252 / var(--tw-bg-opacity));
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
