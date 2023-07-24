@@ -84,6 +84,8 @@ target/
 *.pyc
 __pycache__/
 local_settings.py
+staticfiles/
+node_modules/
 
 .env
 db.sqlite3

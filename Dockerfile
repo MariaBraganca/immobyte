@@ -16,6 +16,10 @@ ENV PYTHONDONTWRITEBYTECODE 1
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED 1
 
+# Node.js
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+RUN apt-get update -qq && apt-get install -y nodejs
+
 # Create directory
 WORKDIR ${APP_PATH}
 
