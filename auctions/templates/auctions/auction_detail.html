@@ -1,21 +1,36 @@
-<html>
-  <head>
-    <title>Immobyte</title>
-  </head>
-  <body>
-    <h1>Zwangsvesteigerung</h1>
-    <h2>{{auction.number}}</h2>
-    <h3>Objekt:</h3>
-    <p>{{auction.object}}</p>
-    <h3>Beschreibung:</h3>
-    <p>{{auction.description}}</p>
-    <h3>Adresse:</h3>
-    <p>{{auction.address}}</p>
-    <h3>Verkehrswert:</h3>
-    <p>{{auction.price}}</p>
-    <h3>Termin:</h3>
-    <p>{{auction.appointment}}</p>
-    <h3>Gutachten:</h3>
-    <a target='_blank' href={{auction.report_url}}>Gutachten.pdf</a>
-  </body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+    <div>
+      <h1 class="text-base font-semibold"><span class="fa-solid fa-house text-sky-500 inline-block align-text-top"></span> Immobyte</h1>
+      <p class="text-sm font-light text-gray-500 mt-1">Details zur Zwangsversteigerung</p>
+    </div>
+    <dl class="divide-y my-8">
+      <div class="grid grid-cols-3 gap-4 py-4">
+        <dt class="text-sm font-medium">Number</dt>
+        <dd class="text-sm text-gray-700 leading-6 col-span-2">{{auction.number}}</dd>
+      </div>
+      <div class="grid grid-cols-3 gap-4 py-4">
+        <dt class="text-sm font-medium">Objekt</dt>
+        <dd class="text-sm text-gray-700 leading-6 col-span-2">{{auction.object}}</dd>
+      </div>
+      <div class="grid grid-cols-3 gap-4 py-4">
+        <dt class="text-sm font-medium">Beschreibung</dt>
+        <dd class="text-sm text-gray-700 leading-6 col-span-2">{{auction.description}}</dd>
+      </div>
+      <div class="grid grid-cols-3 gap-4 py-4">
+        <dt class="text-sm font-medium">Adresse</dt>
+        <dd class="text-sm text-gray-700 leading-6 col-span-2">{{auction.address}}</dd>
+      </div>
+      <div class="grid grid-cols-3 gap-4 py-4">
+        <dt class="text-sm font-medium">Termin</dt>
+        <dd class="text-sm text-gray-700 leading-6 col-span-2">{{auction.appointment}}</dd>
+      </div>
+      <div class="grid grid-cols-3 gap-4 py-4">
+        <dt class="text-sm font-medium">Gutachten</dt>
+        <dd class="text-sm text-sky-500 leading-6 col-span-2">
+          <a target='_blank' href={{auction.report_url}}>Gutachten.pdf</a>
+        </dd>
+      </div>
+    </dl>
+{% endblock %}

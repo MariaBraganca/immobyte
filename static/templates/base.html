@@ -1,0 +1,20 @@
+{% load static %}
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Immobyte</title>
+    <!-- tailwindcss-->
+    <link href="{%static 'css/style.css' %}" rel="stylesheet">
+    <!-- fontawesome-->
+    <link href="{% static 'fontawesome/css/fontawesome.css' %}" rel="stylesheet">
+    <link href="{% static 'fontawesome/css/solid.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    <div class="p-10">
+      {% block content %}
+      {% endblock %}  
+    </div>
+  </body>
+</html>
