@@ -1,10 +1,10 @@
 services:
   db:
-    image: "postgres:${DB_VERSION}"
+    image: "postgres:${DATABASE_VERSION}"
     environment:
-      POSTGRES_USER: "${DB_USER}"
-      POSTGRES_DB: "${DB_NAME}"
-      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+      POSTGRES_USER: "${DATABASE_USER}"
+      POSTGRES_DATABASE: "${DATABASE_NAME}"
+      POSTGRES_PASSWORD: "${DATABASE_PASSWORD}"
     command: postgres -c log_statement=all
     volumes:
       - immobyte-db-data:/var/lib/postgresql/data
@@ -14,7 +14,7 @@ services:
     build: .
     env_file:
       - .env
-    user: "${UID}:${GID}"
+    user: "${USER_ID}:${GROUP_ID}"
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/opt/immobyte
