@@ -1,21 +1,24 @@
 services:
   db:
     image: "postgres:${DATABASE_VERSION}"
+    restart: always
     environment:
       POSTGRES_USER: "${DATABASE_USER}"
       POSTGRES_DATABASE: "${DATABASE_NAME}"
       POSTGRES_PASSWORD: "${DATABASE_PASSWORD}"
-    command: postgres -c log_statement=all
     volumes:
       - immobyte-db-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: immobyte-web:1.0.0
     env_file:
       - .env
     user: "${USER_ID}:${GROUP_ID}"
-    command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn --bind :8000 --workers 3 immobyte.wsgi
     volumes:
       - .:/opt/immobyte
     ports:

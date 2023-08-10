@@ -21,7 +21,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
 RUN apt-get update -qq && apt-get install -y nodejs
 
 # Create directory
-WORKDIR ${APP_PATH}
+WORKDIR $APP_PATH
 
 COPY --chown=$USERNAME:$USERNAME requirements.txt ./
 RUN pip install --upgrade pip
@@ -34,4 +34,4 @@ USER $USERNAME
 
 EXPOSE 8000
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["gunicorn", "--bind", ":8000", "--workers", "3", "immobyte.wsgi"]
