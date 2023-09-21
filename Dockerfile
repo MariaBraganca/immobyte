@@ -5,6 +5,9 @@ ARG USERNAME=immobyte-developer
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 ARG APP_PATH=/opt/immobyte
+ARG ETC_PATH=/etc/apt/
+ARG KEYRINGS_PATH=$ETC_PATH/keyrings
+ARG NODE_MAJOR=20
 
 # Create non-root user
 RUN groupadd --gid $USER_GID $USERNAME
@@ -17,7 +20,13 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # Node.js
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+# Download and import the Nodesource GPG key
+RUN apt-get update -qq && apt-get install -y ca-certificates curl gnupg
+RUN mkdir -p $KEYRINGS_PATH
+RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o $KEYRINGS_PATH/nodesource.gpg
+# Create deb repository
+RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee $ETC_PATH/sources.list.d/nodesource.list
+# Run Update and Install
 RUN apt-get update -qq && apt-get install -y nodejs
 
 # Create directory
