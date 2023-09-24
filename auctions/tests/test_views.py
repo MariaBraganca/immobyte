@@ -13,10 +13,10 @@ def test_auction_list_view(client):
     assert response.is_rendered == True
     
     soup = BeautifulSoup(response.rendered_content, 'html.parser')
-    subheaders = [h3.string for h3 in soup.find_all('h3')]
-    numbers = list(Auction.objects.values_list('number', flat=True))
+    identifiers = [i.text for i in soup.find_all("td", {"id": "auctionNumber"})]
+    auction_numbers = list(Auction.objects.values_list('number', flat=True))
     
-    assert subheaders == numbers
+    assert identifiers == auction_numbers
     
 def test_auction_detail_view(client):   
     auction = Auction.objects.first()
@@ -27,4 +27,5 @@ def test_auction_detail_view(client):
     assert response.is_rendered == True
     
     soup = BeautifulSoup(response.rendered_content, 'html.parser')
-    assert soup.h2.text == auction.number
+    identifier = soup.find("dd", {"id": "auctionNumber"})
+    assert identifier.text == auction.number

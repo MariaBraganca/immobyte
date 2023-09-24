@@ -19,7 +19,7 @@
     <tbody class="divide-y">
       {% for auction in auctions %}
         <tr class="hover:bg-gray-50">
-          <td class="text-sm font-medium py-4 pr-4">{{auction.number}}</td>
+          <td class="text-sm font-medium py-4 pr-4" id="auctionNumber">{{auction.number}}</td>
           <td class="text-sm text-gray-700 leading-6 p-4">{{auction.object|truncatechars:50}}</td>
           <td class="text-sm text-gray-700 leading-6 p-4">{{auction.address|truncatechars:50}}</td>
           <td class="text-sm text-gray-700 leading-6 p-4">{{auction.price}}</td>
