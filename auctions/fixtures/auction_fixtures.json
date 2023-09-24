@@ -3,32 +3,240 @@
     "model": "auctions.auction",
     "pk": 1,
     "fields": {
-      "number": "1234K5678/2099",
-      "court": "Amtsgericht Schöneberg",
-      "object": "Eingentumswohnung",
-      "address": "Bundesallee 38, 10717 Berlin",
-      "price": 123000.00,
-      "appointment": "2023-07-20T08:00:00+00:00",
-      "description": "Wohnung mit 53m². 6OG.",
-      "report_url": "https://immobyte-reports.gutachten1.pdf",
-      "created_at": "2023-07-10T08:37:55.654854+00:00",
-      "updated_at": "2023-07-10T08:37:55.654877+00:00"
+      "number": "0070K0117/2021",
+      "court": "Amtsgericht Neukölln, Saal 128",
+      "object": "Doppelhaushälfte",
+      "address": "Formerweg / Uhrmacherweg 1 / 41, 12355 Berlin-Rudow, Rudow",
+      "price": "630000.00",
+      "appointment": "2023-07-06T08:00:00Z",
+      "description": "Nach den Ermittlungen der Sachverständigen handelt es sich um eine massiv errichtete Doppelhaushälfte bestehend aus Keller-, Erd- und Dachgeschoss. Das Gebäude wurde in der Rechtsform des WEG errichtet und liegt an einer Wohnstraße (Baujahr 1997). Die Wohn-/Nutzfläche beträgt im Erdgeschoss und Dachgeschoss ca. 126 m² und im Kellergeschoss ca. 74 m² (keine Gewähr). Die weiteren Einzelheiten können dem in Zimmer 118 ausliegenden Gutachten entnommen werden.",
+      "report_url": "https://immobyte-reports.s3.eu-central-1.amazonaws.com/56946.pdf",
+      "created_at": "2023-07-06T08:37:55.654Z",
+      "updated_at": "2023-07-06T08:37:55.654Z"
     }
   },
   {
     "model": "auctions.auction",
     "pk": 2,
     "fields": {
-      "number": "9876K4321/2099",
-      "court": "Amtsgericht Kreuzberg",
-      "object": "Eingentumswohnung",
-      "address": "Voigtstr. 41, 10247 Berlin",
-      "price": 456000.00,
-      "appointment": "2023-07-20T09:00:00+00:00",
-      "description": "Wohnung mit 86m². Quergebäude.",
-      "report_url": "https: //immobyte-reports.gutachten2.pdf",
-      "created_at": "2023-07-10T08:38:55.654854+00:00",
-      "updated_at": "2023-07-10T08:38:55.654877+00:00"
+      "number": "0030K0027/2022",
+      "court": "Amtsgericht Spandau, Altstädter Ring 7, 13597 Berlin, Saal 140",
+      "object": "Eigentumswohnung (1 bis 2 Zimmer)",
+      "address": "Schulenburgstraße 16, 13597 Berlin",
+      "price": "130000.00",
+      "appointment": "2023-07-06T08:00:00Z",
+      "description": "1-Zimmer-Wohnung Schulenburgstraße 16, 13597 Berlin-Spandau. 3. OG rechts. Wohnfläche: 41,28 m². Baujahr: 1960. Vermietet.",
+      "report_url": "https://immobyte-reports.s3.eu-central-1.amazonaws.com/57587.pdf",
+      "created_at": "2023-07-06T08:37:55.659Z",
+      "updated_at": "2023-07-06T08:37:55.659Z"
+    }
+  },
+  {
+    "model": "auctions.auction",
+    "pk": 3,
+    "fields": {
+      "number": "0070K0014/2022",
+      "court": "Amtsgericht Charlottenburg, Amtsgerichtsplatz 1, 14057 Berlin, Saal 120",
+      "object": "Eigentumswohnung 2 1/2 Zimmer",
+      "address": "Franzensbader Str. 5, 5a, 14193 Berlin",
+      "price": "540000.00",
+      "appointment": "2023-07-10T07:00:00Z",
+      "description": "Wohnung Nr. 9 mit Keller im Aufgang Franzensbader Straße 5, 14193 Berlin, gelegen im 1. OG Seitenflügel links und laut Aufteilungsplan bi einer Wohnfläche von ca. 77,99 m² bestehend aus 2,5 Zimmer, Diele/Flur und Bad/WC. Eine Küche ist nicht eingerichtet, kann aber angelegt werden. Es besteht mittels Wanddurchgang eine Zusammenlegung mit der Wohnung Nr. 7, die aber nicht Gegenstand dieses Verfahrens ist. Wegen aller Einzelheiten wird auf das hier ausliegende und im November 2022 erstellte Gutachten verwiesen.\nBaujahr: ca. 1915 (Wiederaufbau: 1964)",
+      "report_url": "https://immobyte-reports.s3.eu-central-1.amazonaws.com/57360.pdf",
+      "created_at": "2023-07-06T08:37:55.663Z",
+      "updated_at": "2023-07-06T08:37:55.663Z"
+    }
+  },
+  {
+    "model": "auctions.auction",
+    "pk": 4,
+    "fields": {
+      "number": "0070K0013/2022",
+      "court": "Amtsgericht Charlottenburg, Amtsgerichtsplatz 1, 14057 Berlin, Saal 120",
+      "object": "Eigentumswohnung (3 bis 4 Zimmer)",
+      "address": "Franzensbader Str. 5-5a, 14193 Berlin",
+      "price": "710000.00",
+      "appointment": "2023-07-10T08:30:00Z",
+      "description": "Wohnung Nr. 7 mit Keller im Aufgang Franzensbader Straße 5a, 14193 Berlin, gelegen im 1. OG rechts des Vorderhauses und laut Aufteilungsplan bei einer Wohnfläche von ca. 99,27 m² bestehend aus 3 Zimmer, Diele, Flur, Küche, Bad/WC und Loggia. Es besteht mittels Wanddurchgang eine Zusammenlegung mit der benachbarten Wohnung Nr. 9, die aber nicht Gegenstand des Verfahrens ist. Wegen aller Einzelheiten wird auf das hier ausliegende und im November 2022 erstellte Gutachten verwiesen. Baujahr: ca. 1915 (Wiederaufbau: 1964)",
+      "report_url": "https://immobyte-reports.s3.eu-central-1.amazonaws.com/57400.pdf",
+      "created_at": "2023-07-06T08:37:55.665Z",
+      "updated_at": "2023-07-06T08:37:55.665Z"
+    }
+  },
+  {
+    "model": "auctions.auction",
+    "pk": 5,
+    "fields": {
+      "number": "0070K0038/2021",
+      "court": "Amtsgericht Köpenick, Mandrellaplatz 6, 12555 Berlin, Saal 110",
+      "object": "Wochenendhausgrundstück, Verkehrsfläche",
+      "address": "Lerchenweg 516, 12589 Berlin, Rahnsdorf",
+      "price": "54001.00",
+      "appointment": "2023-07-11T07:00:00Z",
+      "description": "1) Gemäß Verkehrswertgutachten handelt es sich um ein von einer Miteigentümerin eigengenutztes Wochenendhausgrundstück incl. einer anteiligen Wasserfläche bis zur Mitte des an das Grundstück als öffentliche Wasserstraße gleichfalls anbindenden Kanals I von ca. 45 m². Das Grundstück ist bebaut mit einem Bungalow ohne Unterkellerung (Baujahr ca. 1975) sowie baulichen Erweiterungen (bis ca. 2010, ggf. bestehen Rückbauerfordernisse). Es erfolgte keine Innenbesichtigung. Es besteht Fluglärmbelästigung und eine Gefährdung durch Grundwasser. Das Wochenendhausgrundstück befindet sich in einem als \"Überschwemmungsgebiet\" ausgewiesenen Bereich (Restriktionen bzgl. der Bebaubarkeit und erforderlicher Schutzmaßnahmen). Wegen weiterer Einzelheiten (u.a. zur Bebaubarkeit des nur ca. 9 m breiten Grundstücks) wird auf das Verkehrswertgutachten vom 31.07.2022 Bezug genommen.\n2) Gemäß Verkehrswertgutachten vom 31.07.2022 handelt es sich um eine bereits im öffentlich gewidmeten Straßenraum des Lerchenwegs belegene Verkehrsfläche. Wegen weiterer Einzelheiten wird auf das Verkehrswertgutachten vom 31.07.2022 Bezug genommen.",
+      "report_url": "https://immobyte-reports.s3.eu-central-1.amazonaws.com/57233.pdf",
+      "created_at": "2023-07-06T08:37:55.667Z",
+      "updated_at": "2023-07-06T08:37:55.667Z"
+    }
+  },
+  {
+    "model": "auctions.auction",
+    "pk": 6,
+    "fields": {
+      "number": "0076K0069/2022",
+      "court": "Amtsgericht Schöneberg, Dienstgebäude II, Ringstraße 9, 12203 Berlin, Saal 110",
+      "object": "Eigentumswohnung (1 bis 2 Zimmer), sonstiges Teileigentum (z.B. Keller, Hobbyraum)",
+      "address": "Mühlenstraße 3, 12247 Berlin, Lankwitz",
+      "price": "180000.00",
+      "appointment": "2023-07-11T08:00:00Z",
+      "description": "Die laut Gutachten vermietete Wohnung ist im Vorderhaus, 2. Obergeschoss links, gelegen und besteht bei einer Wohnfläche von ca. 55 m² aus 2 Zimmern, Flur, Bad und Küche. Ein Kellerraum ist vom Verwalter zur Sondernutzung zugewiesen.\nVoraussichtlich bestehen bleibende Rechte: beschränkte persönliche Dienstbarkeit (Abt. II Nr. 1)\nHinweis: Wartezeiten wegen Einlasskontrollen möglich!",
+      "report_url": "https://immobyte-reports.s3.eu-central-1.amazonaws.com/57576.pdf",
+      "created_at": "2023-07-06T08:37:55.669Z",
+      "updated_at": "2023-07-06T08:37:55.669Z"
+    }
+  },
+  {
+    "model": "auctions.auction",
+    "pk": 7,
+    "fields": {
+      "number": "0070K0097/2021",
+      "court": "Amtsgericht Charlottenburg, Amtsgerichtsplatz 1, 14057 Berlin, Saal 120",
+      "object": "Wohn-/Geschäftshaus",
+      "address": "Leonhardtstraße 11, 14057 Berlin",
+      "price": "9200000.00",
+      "appointment": "2023-07-12T07:00:00Z",
+      "description": "Grundstück in Leonhardtstraße 11, 14057 Berlin, bebaut mit einem unterkellerten, 5-geschossigen Wohn- und Geschäftshaus. welches ursprünglich um 1900 errichtet wurde. Die Bebauung besteht hierbei aus Vorderhaus, rechtem Seitenflügel, Quergebäude und linkem Seitenflügelansatz. Nach einer dem Gutachter vorliegenden Mieterliste befinden sich in der Bebauung 32 Wohnungen mit einer Wohnfläche von 2.295,82 m² und 3 Gewerbeeinheiten (Läden) mit einer Nutzfläche von 169,16 m². Gemäß Mieterliste sind alle Einheiten vermietet; tatsächlich war eine Wohnung leerstehend. Wegen aller Einzelheiten wird auf das ausliegende und im August 2022 erstattete Gutachten verwiesen.\n   \nWohn-/Nutzfläche: 2.464,98 m² Größe des Grundstücks: 1.144,00 m²",
+      "report_url": "https://immobyte-reports.s3.eu-central-1.amazonaws.com/57255.pdf",
+      "created_at": "2023-07-06T08:37:55.671Z",
+      "updated_at": "2023-07-06T08:37:55.671Z"
+    }
+  },
+  {
+    "model": "auctions.auction",
+    "pk": 8,
+    "fields": {
+      "number": "0030K0029/2022",
+      "court": "Amtsgericht Spandau, Altstädter Ring 7, 13597 Berlin, Saal 140",
+      "object": "Eigentumswohnung (1 bis 2 Zimmer)",
+      "address": "Grammestraße 3, 13629 Berlin",
+      "price": "125000.00",
+      "appointment": "2023-07-13T08:00:00Z",
+      "description": "Grammestraße 3, 13629 Berlin: 1-Zimmerwohnung im 1. OG, Balkon, Kellerraum. Wohnfläche: ca. 42,00 m².\nBj.: 1910. Unbefristet vermietet. NKM: 350,00 EUR/Monat, Hausgeld: 153,00 EUR/Monat.",
+      "report_url": "https://immobyte-reports.s3.eu-central-1.amazonaws.com/57594.pdf",
+      "created_at": "2023-07-06T08:37:55.672Z",
+      "updated_at": "2023-07-06T08:37:55.672Z"
+    }
+  },
+  {
+    "model": "auctions.auction",
+    "pk": 9,
+    "fields": {
+      "number": "0030K0020/2022",
+      "court": "Amtsgericht Spandau, Altstädter Ring 7, 13597 Berlin, Saal 140",
+      "object": "Einfamilienhaus",
+      "address": "Luftschifferweg 25 A, 25 B, 13591 Berlin, Berlin",
+      "price": "830000.00",
+      "appointment": "2023-07-13T09:30:00Z",
+      "description": "freistehendes, zweigeschossiges Einfamilienhaus mit Einliegerwohnung mit insgesamt 195 m² Wohnfläche auf 705 m² großem Grundstück, Baujahr 2018, GZH, Solarthermieanlage für Warmwasser.",
+      "report_url": "https://immobyte-reports.s3.eu-central-1.amazonaws.com/57602.pdf",
+      "created_at": "2023-07-06T08:37:55.674Z",
+      "updated_at": "2023-07-06T08:37:55.674Z"
+    }
+  },
+  {
+    "model": "auctions.auction",
+    "pk": 10,
+    "fields": {
+      "number": "0076K0054/2022",
+      "court": "Amtsgericht Schöneberg, Dienstgebäude II, Ringstraße 9, 12203 Berlin, Saal 110; Hinweis: Wartezeiten wegen Einlasskontrollen möglich!",
+      "object": "Eigentumswohnung (1 bis 2 Zimmer)",
+      "address": "Mörchinger Straße 25/27, 14169 Berlin, Zehlendorf",
+      "price": "260000.00",
+      "appointment": "2023-07-17T08:30:00Z",
+      "description": "Die zum Zeitpunkt der Begutachtung vermutlich unvermietete, eigengenutzte Wohnung (Mörchinger Straße 27) ist im Hochparterre rechts gelegen und besteht bei einer Wohnfläche von ca. 68,37 m² aus 2 Zimmern, Küche, Flur, Badezimmer und Loggia. Zur Wohnung gehört der Keller Nr. 4 (Holzverschlag). Ein oberirdischer Kfz-Stellplatz (Gemeinschaftseigentum) ist zugewiesen.\nVoraussichtlich bestehen bleibende Rechte: Als Teil des geringsten Gebotes bleiben Rechte in Abt. III in Höhe von voraussichtlich etwa 167.000,00 € und in Abt. II eine Grunddienstbarkeit (Wegerecht) bestehen",
+      "report_url": "https://immobyte-reports.s3.eu-central-1.amazonaws.com/57632.pdf",
+      "created_at": "2023-07-06T08:37:55.676Z",
+      "updated_at": "2023-07-06T08:37:55.676Z"
+    }
+  },
+  {
+    "model": "auctions.auction",
+    "pk": 11,
+    "fields": {
+      "number": "0070K0007/2022",
+      "court": "Amtsgericht Charlottenburg, Amtsgerichtsplatz 1, 14057 Berlin, Saal 120",
+      "object": "Eigentumswohnung (1 bis 2 Zimmer)",
+      "address": "Prinzregentenstraße 86, 10717 Berlin",
+      "price": "185000.00",
+      "appointment": "2023-07-19T07:00:00Z",
+      "description": "Wohnung Nr. 20 in Prinzregentenstraße 86, 10717 Berlin, gelegen im 4. Obergeschoss rechts Seitenflügel und laut Grundrissplan bestehend aus 2 Zimmer, Küche mit kleiner Kammer, Bad/WC, Diele/Flur und Keller jedoch ohne Balkon. Eine Innenbesichtigung durch den Gutachter hat nicht stattgefunden. Die Wohnung stellt nach Feststellungen des Gutachters ein Totalsanierungsfall dar. Wegen aller Einzelheiten wird auf das hier ausliegende und im Dezember 2022 erstellte Gutachten verwiesen.\n   \nBaujahr: ca. 1911 Wohnfläche: ca. 55,09 m²",
+      "report_url": "https://immobyte-reports.s3.eu-central-1.amazonaws.com/57322.pdf",
+      "created_at": "2023-07-06T08:37:55.677Z",
+      "updated_at": "2023-07-06T08:37:55.677Z"
+    }
+  },
+  {
+    "model": "auctions.auction",
+    "pk": 12,
+    "fields": {
+      "number": "0030K0016/2018",
+      "court": "Saal 1313, Amtsgericht Lichtenberg, Roedeliusplatz 1, 10365 Berlin",
+      "object": "Einfamilienhaus",
+      "address": "Diethelmweg 25, 12683 Berlin, Biesdorf",
+      "price": "982000.00",
+      "appointment": "2023-07-19T07:30:00Z",
+      "description": "Die folgenden Angaben sind dem Gutachten entnommen und ohne Gewähr: \nAuf dem Grundstück befindet sich ein eingeschossiges, nicht unterkellertes Einfamilienhaus als Doppelhaushälfte mit ausgebautem Dachgeschoss, Baujahr 2015. Die Wohnfläche beträgt insgesamt ca. 184,68 m² und setzt sich im EG aus 3 Zimmern, Flur, Gäste-WC und der Küche mit Zugang zum Hauswirtschaftraum und einer Sauna zusammen, im OG aus Flur, Bad, 4 Zimmern und Ankleide. Weiterhin  befindet sich noch eine massive Garage mit Sektionaltor auf dem Grundstück, geschätztes Baujahr 2015. Straßenseitig vor dem Gebäude befinden sich noch zwei zum Grundstück gehörige Stellplatzflächen. Weitere Einzelheiten können dem Gutachten entnommen werden.",
+      "report_url": "https://immobyte-reports.s3.eu-central-1.amazonaws.com/57373.pdf",
+      "created_at": "2023-07-06T08:37:55.679Z",
+      "updated_at": "2023-07-06T08:37:55.679Z"
+    }
+  },
+  {
+    "model": "auctions.auction",
+    "pk": 13,
+    "fields": {
+      "number": "0030K0017/2022",
+      "court": "Saal 2227, Amtsgericht Lichtenberg, Roedeliusplatz 1, 10365 Berlin",
+      "object": "Einfamilienhaus",
+      "address": "Otto-Nagel-Straße 80, 12683 Berlin, Biesdorf",
+      "price": "665000.00",
+      "appointment": "2023-07-24T07:30:00Z",
+      "description": "Die folgenden Angaben sind dem Gutachten entnommen und ohne Gewähr:\nBei dem Objekt handelt es sich um ein Hinterliegergrundstück, bebaut mit einem 1 1/2-geschossigen freistehenden Einfamilienhaus ca. aus dem Jahr 1907. 1965 erfolgte ein Wiederaufbau des Wohnhauses ggf. nach Kriegseinwirkungen und 1999 - 2001 ein Um- und Ausbau des Dachgeschosses zu Wohnzwecken und umfangreicher Mod.- und Instandsetzungsmaßnahmen. Es erfolgte nur eine Außenbesichtigung. Im EG befinden sich nach Bauunterlagen 2 1/2 Zimmer, Flur, Küche, Bad und Veranda mit ca. 86,76 m² Wohnfläche (ohne Veranda), im DG ein Studio nebst Kochnische, Bad und Dachterrasse mit ca. 52,78 m² Wohnfläche (ohne Dachterrasse) und im KG 3 Räume. DG und KG sind vermutlich durch Außentreppen erreichbar, wobei ein Zugang zum DG auch über eine innen liegende Raumspartreppe gewährleistet ist. Eine Garage bzw. ein PKW-Stellplatz ist nicht vorhanden und aufgrund der einseitigen Grenzbebauung auch kaum umsetzbar. Der Zugang zum Grundstück ist über ein 3 m breites Geh-, Fahr- und Leitungsrecht entlang der nördlichen Grenze des Vordergrundstücks durch Eintragung einer Grunddienstbarkeit und einer Baulast gewährleistet. Weitere Einzelheiten können dem Gutachten entnommen werden.",
+      "report_url": "https://immobyte-reports.s3.eu-central-1.amazonaws.com/57496.pdf",
+      "created_at": "2023-07-06T08:37:55.680Z",
+      "updated_at": "2023-07-06T08:37:55.680Z"
+    }
+  },
+  {
+    "model": "auctions.auction",
+    "pk": 14,
+    "fields": {
+      "number": "0076K0080/2022",
+      "court": "Amtsgericht Schöneberg, Dienstgebäude II, Ringstraße 9, 12203 Berlin, Saal 110",
+      "object": "Eigentumswohnung (1 bis 2 Zimmer), sonstiges Teileigentum (z.B. Keller, Hobbyraum)",
+      "address": "Fischerhüttenstraße 63,63A-B,65,65A, Hartmannsweilerweg 12-20 ger., Sven-Hedin-Straße 46-68 ger., Zinnowweg 1-9,11, 14163 Berlin, Zehlendorf",
+      "price": "320000.00",
+      "appointment": "2023-07-25T08:00:00Z",
+      "description": "Die laut Gutachten eigengenutzte Wohnung ist in der Fischerhüttenstraße 65, im Erdgeschoss links, gelegen und besteht bei einer Wohnfläche von ca. 75 m² aus 2 Zimmern, Kammer, Loggia, Küche, Bad/WC und Diele. Zur Wohnung gehört ein Keller im Untergeschoss.\nVoraussichtlich bestehen bleibende Rechte: Dienstbarkeiten Abt. II Nrn. 1-3\nHinweis: Wartezeiten aufgrund Einlasskontrollen möglich!",
+      "report_url": "https://immobyte-reports.s3.eu-central-1.amazonaws.com/57674.pdf",
+      "created_at": "2023-07-06T08:37:55.681Z",
+      "updated_at": "2023-07-06T08:37:55.681Z"
+    }
+  },
+  {
+    "model": "auctions.auction",
+    "pk": 15,
+    "fields": {
+      "number": "0030K0027/2022",
+      "court": "Amtsgericht Wedding, Brunnenplatz 1, 13357 Berlin, III / 350",
+      "object": "Eigentumswohnung (1 bis 2 Zimmer)",
+      "address": "Seestraße 118, 13353 Berlin",
+      "price": "110000.00",
+      "appointment": "2023-07-25T09:00:00Z",
+      "description": "Es handelt sich um eine 2-Zimmerwohnung, Küche, Bad, Flur; Wohnfläche ca. 63,03 m² laut Gutachten.",
+      "report_url": "https://immobyte-reports.s3.eu-central-1.amazonaws.com/57663.pdf",
+      "created_at": "2023-07-06T08:37:55.683Z",
+      "updated_at": "2023-07-06T08:37:55.683Z"
     }
   }
 ]
