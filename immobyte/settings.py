@@ -25,7 +25,7 @@ import os
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DJANGO_DEBUG', False)
+DEBUG = os.getenv('DJANGO_DEBUG', False) == 'True'
 
 ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '127.0.0.1').split(',')
 
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
     
     # apps
     'home',
@@ -128,12 +129,34 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
+USE_S3 = os.getenv('USE_S3', False) == 'True'
 
-STATIC_URL = '/static/'
+if USE_S3:
+    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+    STORAGES = {
+        "staticfiles": {
+            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+            "OPTIONS": {
+                "bucket_name": os.getenv('AWS_STORAGE_BUCKET_NAME'),
+                "object_parameters": {'CacheControl': 'max-age=86400'},
+                "location": os.getenv('AWS_LOCATION'),
+                "region_name": os.getenv('AWS_S3_REGION_NAME'),
+                "custom_domain": os.getenv('AWS_S3_CUSTOM_DOMAIN')
+            }
+        }
+    }
+    STATIC_URL = 'https://{}/{}/'.format(
+        os.getenv('AWS_S3_CUSTOM_DOMAIN'),
+        os.getenv('AWS_LOCATION')
+    )
+else:
+    STATIC_URL = 'static/'
+    STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
-STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
