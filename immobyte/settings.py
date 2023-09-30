@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'storages',
     
     # apps
-    'home',
     'auctions'
 ]
 
