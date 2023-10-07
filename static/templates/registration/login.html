@@ -1,29 +1,25 @@
 {% extends 'base.html' %}
 {% load widget_tweaks %}
 
+{% block navlinks %}
+  <li><a href="#" class='text-sm font-medium leading-6 px-5 hover:text-sky-500'>Signin</a></li>
+{% endblock %}
+
 {% block content %}
-  <div class='flex justify-center'>
-    <div class='w-full max-w-md'>
-      <div class='mt-24 mb-14'>
-        <h1 class='text-4xl font-semibold'><span class='fa-solid fa-house text-sky-500 align-text-top inline-block pr-3'></span>Immobyte</h1>
-        <p class='text-sm font-light text-gray-500 mt-2 pl-1'>Zwangsversteigerungen aber einfach.</p>
-      </div>
-      <form method='post'>
-        {% csrf_token %}
-        <div class='mt-4 grid grid-cols-3'>
-          <label for='{{ form.username.id_for_label }}' class='border-b border-gray-200 px-0 py-3 text-sm font-medium leading-6'>Username</label>
-          {{ form.username|add_class:'col-span-2 border-0 border-b border-gray-200 px-0 py-3 text-sm font-light placeholder:text-gray-500 leading-6 focus:border-sky-500 focus:ring-0'|attr:'placeholder:maria'}}
-        </div>
-        <div class='mt-4 grid grid-cols-3'>
-          <label for='{{ form.password.id_for_label }}' class='border-b border-gray-200 px-0 py-3 text-sm font-medium leading-6'>Password</label>
-          {{ form.password|add_class:'col-span-2 border-0 border-b border-gray-200 px-0 py-3 text-sm font-light placeholder:text-gray-500 leading-6 focus:border-sky-500 focus:ring-0'|attr:'placeholder:*******' }}
-        </div>
-        {% for error in form.non_field_errors %}
-          <p class='mt-4 text-xs text-red-500'>{{error}}</p>
-        {% endfor %}
-        <input type='submit' value='Login' class='w-full bg-sky-500 mt-14 mb-6 py-1.5 rounded-md text-sm text-white font-bold leading-6 hover:bg-sky-600'>
-        <a href="" class='text-sm text-sky-500 font-medium leading-6 hover:text-sky-600'>Password vergessen?</a>
-      </form>
-    </div>  
-  </div>
+  <form method='post' class='max-w-md w-full mx-auto my-24'>
+    {% csrf_token %}
+    <div class='mt-4 grid grid-cols-3'>
+      <label for='{{ form.username.id_for_label }}' class='border-b border-gray-200 px-0 py-3 text-sm font-medium leading-6'>Email</label>
+      {{ form.username|add_class:'col-span-2 border-0 border-b border-gray-200 px-0 py-3 text-sm font-light placeholder:text-gray-500 leading-6 focus:border-sky-500 focus:ring-0'|attr:'placeholder:maria@example.com'|add_error_class:'mt-4 text-xs text-red-500' }}
+    </div>
+    <div class='mt-4 grid grid-cols-3'>
+      <label for='{{ form.password.id_for_label }}' class='border-b border-gray-200 px-0 py-3 text-sm font-medium leading-6'>Passwort</label>
+      {{ form.password|add_class:'col-span-2 border-0 border-b border-gray-200 px-0 py-3 text-sm font-light placeholder:text-gray-500 leading-6 focus:border-sky-500 focus:ring-0'|attr:'placeholder:*******'|add_error_class:'mt-4 text-xs text-red-500' }}
+    </div>
+    {% for error in form.non_field_errors %}
+      <p class='mt-4 text-xs text-red-500'>{{error}}</p>
+    {% endfor %}
+    <input type='submit' value='Login' class='w-full bg-sky-500 mt-14 mb-6 py-1.5 rounded-md text-sm text-white font-bold leading-6 hover:bg-sky-600'>
+    <a href="" class='text-sm text-sky-500 font-medium leading-6 hover:text-sky-600'>Password vergessen?</a>
+  </form>
 {% endblock %}
