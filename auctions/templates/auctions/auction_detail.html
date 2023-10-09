@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
+{% block navheader %}
+  <p class="text-sm font-light text-gray-500 mt-1">Details zur Zwangsversteigerung</p>
+{% endblock %}
+
 {% block content %}
-    <div>
-      <h1 class="text-base font-semibold"><span class="fa-solid fa-house text-sky-500 inline-block align-text-top"></span> Immobyte</h1>
-      <p class="text-sm font-light text-gray-500 mt-1">Details zur Zwangsversteigerung</p>
-    </div>
     <dl class="divide-y my-8">
       <div class="grid grid-cols-3 gap-4 py-4">
         <dt class="text-sm font-medium">Number</dt>
@@ -21,6 +21,10 @@
       <div class="grid grid-cols-3 gap-4 py-4">
         <dt class="text-sm font-medium">Adresse</dt>
         <dd class="text-sm text-gray-700 leading-6 col-span-2">{{auction.address}}</dd>
+      </div>
+      <div class="grid grid-cols-3 gap-4 py-4">
+        <dt class="text-sm font-medium">Verkehrswert</dt>
+        <dd class="text-sm text-gray-700 leading-6 col-span-2">{{auction.price}}</dd>
       </div>
       <div class="grid grid-cols-3 gap-4 py-4">
         <dt class="text-sm font-medium">Termin</dt>

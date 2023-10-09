@@ -15,6 +15,20 @@
     <link href="{% static 'fontawesome/css/solid.css' %}" rel="stylesheet">
   </head>
   <body>
+    <nav class='flex justify-between items-start px-10 py-5'>
+      <a href="{% url 'auction.list' %}">
+        <h1 class="text-base font-semibold"><span class="fa-solid fa-house text-sky-500 inline-block align-text-top pr-3"></span>Immobyte</h1>
+        {% block navheader %}
+          <p class="text-sm font-light text-gray-500 mt-1">Zwangsversteigerungen aber einfach.</p>
+        {% endblock %}
+      </a>
+      <ul class='flex justify-end items-center'>
+        {% block navlinks %}
+          <li><a href="#" class='text-sm font-medium leading-6 px-5 hover:text-sky-500'>Über uns</a></li> <!-- TODO: add about page -->
+          <li><a href="{% url 'immobyte.logout' %}" class='text-sm font-medium leading-6 px-5 hover:text-sky-500'>Logout</a></li>
+        {% endblock %}
+      </ul>
+    </nav>
     <div class="p-10">
       {% block content %}
       {% endblock %}  
