@@ -21,9 +21,23 @@ services:
     command: gunicorn --bind :8000 --workers 3 immobyte.wsgi
     volumes:
       - .:/opt/immobyte
-    ports:
-      - "8000:8000"
+    expose:
+      - 8000
     depends_on:
       - db
+  nginx:
+    image: "nginx:${NGINX_VERSION}"
+    environment:
+      NGINX_PORT: "${NGINX_PORT}"
+      NGINX_BACKEND_SERVER: "${NGINX_BACKEND_SERVER}"
+      NGINX_BACKEND_PORT: "${NGINX_BACKEND_PORT}"
+      NGINX_ADMIN_IP: "${NGINX_ADMIN_IP}"
+    volumes:
+      - ./nginx/default.conf.template:/etc/nginx/templates/default.conf.template
+      - ./nginx/log:/var/log/nginx/
+    ports:
+      - "${NGINX_BACKEND_PORT}:${NGINX_PORT}"
+    depends_on:
+      - web
 volumes:
   immobyte-db-data:
