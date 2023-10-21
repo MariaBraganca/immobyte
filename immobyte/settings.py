@@ -168,3 +168,5 @@ LOGIN_URL='/login'
 LOGIN_REDIRECT_URL='/auctions'
 
 LOGOUT_REDIRECT_URL='/login'
+
+CSRF_TRUSTED_ORIGINS = os.getenv('DJANGO_CSRF_TRUSTED_ORIGINS', 'http://127.0.0.1:8000').split(',')

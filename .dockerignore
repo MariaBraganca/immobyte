@@ -77,7 +77,6 @@ docs/_build/
 # PyBuilder
 target/
 
-
 ### Django ###
 *.log
 *.pot
@@ -87,5 +86,8 @@ local_settings.py
 staticfiles/
 node_modules/
 
+### Nginx ###
+nginx/log/*.log
+
+### Enviroment Variables ###
 .env
-db.sqlite3
