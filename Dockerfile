@@ -43,4 +43,4 @@ USER $USERNAME
 
 EXPOSE 8000
 
-CMD ["gunicorn", "immobyte.wsgi:application", "-c", "./gunicorn/gunicorn.conf.py"]
+CMD ["gunicorn", "immobyte.wsgi:application"]
