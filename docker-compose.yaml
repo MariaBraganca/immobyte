@@ -18,7 +18,7 @@ services:
     env_file:
       - .env
     user: "${USER_ID}:${GROUP_ID}"
-    command: gunicorn --bind :8000 --workers 3 immobyte.wsgi
+    command: gunicorn immobyte.wsgi:application -c ./gunicorn/gunicorn.conf.py
     volumes:
       - .:/opt/immobyte
     expose:

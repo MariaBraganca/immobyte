@@ -92,5 +92,8 @@ nginx/log/*.log
 ### VS Code ###
 .vscode/
 
+### Gunicorn ###
+gunicorn/log/*.log
+
 ### Enviroment Variables ###
 .env
