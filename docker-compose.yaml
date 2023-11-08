@@ -9,12 +9,12 @@ services:
     volumes:
       - immobyte-db-data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "${DATABASE_PORT}:${DATABASE_PORT}"
   web:
     build:
       context: .
       dockerfile: Dockerfile
-    image: immobyte-web:1.0.0
+    image: "immobyte-web:${DOCKER_IMAGE_TAG}"
     env_file:
       - .env
     user: "${USER_ID}:${GROUP_ID}"
@@ -22,7 +22,7 @@ services:
     volumes:
       - .:/opt/immobyte
     expose:
-      - 8000
+      - ${DJANGO_PORT}
     depends_on:
       - db
   nginx:
