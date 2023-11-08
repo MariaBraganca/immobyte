@@ -89,5 +89,8 @@ node_modules/
 ### Nginx ###
 nginx/log/*.log
 
+### VS Code ###
+.vscode/
+
 ### Enviroment Variables ###
 .env
