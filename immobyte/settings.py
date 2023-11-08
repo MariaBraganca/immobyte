@@ -135,14 +135,14 @@ if USE_S3:
     AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
     STORAGES = {
-        "staticfiles": {
-            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
-            "OPTIONS": {
-                "bucket_name": os.getenv('AWS_STORAGE_BUCKET_NAME'),
-                "object_parameters": {'CacheControl': 'max-age=86400'},
-                "location": os.getenv('AWS_LOCATION'),
-                "region_name": os.getenv('AWS_S3_REGION_NAME'),
-                "custom_domain": os.getenv('AWS_S3_CUSTOM_DOMAIN')
+        'staticfiles': {
+            'BACKEND': 'storages.backends.s3boto3.S3Boto3Storage',
+            'OPTIONS': {
+                'bucket_name': os.getenv('AWS_STORAGE_BUCKET_NAME'),
+                'object_parameters': {'CacheControl': 'max-age=86400'},
+                'location': os.getenv('AWS_LOCATION'),
+                'region_name': os.getenv('AWS_S3_REGION_NAME'),
+                'custom_domain': os.getenv('AWS_S3_CUSTOM_DOMAIN')
             }
         }
     }
