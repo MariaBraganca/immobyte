@@ -15,11 +15,15 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: "immobyte-web:${DOCKER_IMAGE_TAG}"
+    image: "immobyte-web:${IMMOBYTE_VERSION}"
+    labels:
+      com.datadoghq.tags.env: ${DD_ENV}
+      com.datadoghq.tags.service: ${DD_SERVICE}
+      com.datadoghq.tags.version: ${DD_VERSION}
     env_file:
       - .env
     user: "${USER_ID}:${GROUP_ID}"
-    command: gunicorn immobyte.wsgi:application
+    command: ddtrace-run gunicorn immobyte.wsgi:application
     volumes:
       - .:/opt/immobyte
     expose:
@@ -39,5 +43,21 @@ services:
       - "${NGINX_BACKEND_PORT}:${NGINX_PORT}"
     depends_on:
       - web
+  datadog:
+    image: "gcr.io/datadoghq/agent:${DD_VERSION}"
+    container_name: dd-agent
+    restart: always
+    environment:
+      DD_API_KEY: "${DD_API_KEY}"
+      DD_SITE: "${DD_SITE}"
+      DD_APM_ENABLED: "${DD_APM_ENABLED}"
+      DD_APM_NON_LOCAL_TRAFFIC: "${DD_APM_NON_LOCAL_TRAFFIC}"
+      DD_LOGS_ENABLED: "${DD_LOGS_ENABLED}"
+      DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL: "${DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL}"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /proc/:/host/proc/:ro
+      - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
 volumes:
   immobyte-db-data:

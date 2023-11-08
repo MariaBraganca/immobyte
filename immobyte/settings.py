@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'storages',
     'widget_tweaks',
+    'ddtrace.contrib.django',
     
     # apps
     'auctions'

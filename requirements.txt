@@ -13,3 +13,5 @@ pytest-django==4.5.2
 beautifulsoup4==4.12.2
 # Server
 gunicorn==21.2.0
+# Logging
+ddtrace==2.1.5
