@@ -86,9 +86,6 @@ local_settings.py
 staticfiles/
 node_modules/
 
-### Nginx ###
-nginx/log/*.log
-
 ### VS Code ###
 .vscode/
 
