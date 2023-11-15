@@ -19,7 +19,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED 1
 # Adds working directory to python path
-ENV PYTHONPATH $APP_PATH
+ENV PYTHONPATH "${PYTHONPATH}:${APP_PATH}"
 
 # Node.js
 # Download and import the Nodesource GPG key
