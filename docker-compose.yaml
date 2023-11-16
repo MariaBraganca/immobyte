@@ -16,7 +16,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: "immobyte-web:${DOCKER_IMAGE_TAG}"
+    image: "immobyte-web:${IMMOBYTE_VERSION}"
     env_file:
       - .env
     user: "${USER_ID}:${GROUP_ID}"
