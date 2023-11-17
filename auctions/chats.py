@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from openai import OpenAI
 import os
+import time
 
 class AssistedUserChat:
     """Attempt to model assisted user chats."""
@@ -26,7 +27,14 @@ class AssistedUserChat:
 
         """Enqueue the assistant's response."""
         self.retrieve_assistant(run.id)
-        
+
+        time.sleep(3)
+
+        """List all thread messages"""
+        thread_messages = self.read_thread_messages()
+
+        return [tm.content[0].text.value for tm in thread_messages.data]
+
     def add_message(self, content):
         self.client.beta.threads.messages.create(
             thread_id = self.thread.id,
@@ -50,7 +58,6 @@ class AssistedUserChat:
         return object
     
     def read_thread_messages(self):
-        thread_messages = self.client.beta.threads.messages.list(thread_id = self.thread.id).data
+        list = self.client.beta.threads.messages.list(thread_id = self.thread.id)
         
-        [print(tm.content[0].text.value) for tm in thread_messages]
-    
+        return list
