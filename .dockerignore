@@ -85,9 +85,7 @@ __pycache__/
 local_settings.py
 staticfiles/
 node_modules/
-
-### Nginx ###
-nginx/log/*.log
+log/**/*.log
 
 ### VS Code ###
 .vscode/

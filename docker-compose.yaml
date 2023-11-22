@@ -6,8 +6,10 @@ services:
       POSTGRES_USER: "${DATABASE_USER}"
       POSTGRES_DATABASE: "${DATABASE_NAME}"
       POSTGRES_PASSWORD: "${DATABASE_PASSWORD}"
+    command: postgres -c log_statement=all -c log_directory=/var/log/postgresql -c logging_collector=on
     volumes:
       - immobyte-db-data:/var/lib/postgresql/data
+      - ./log/postgresql:/var/log/postgresql
     ports:
       - "${DATABASE_PORT}:${DATABASE_PORT}"
   web:
@@ -18,7 +20,7 @@ services:
     env_file:
       - .env
     user: "${USER_ID}:${GROUP_ID}"
-    command: gunicorn --bind :8000 --workers 3 immobyte.wsgi
+    command: gunicorn immobyte.wsgi:application
     volumes:
       - .:/opt/immobyte
     expose:
@@ -34,7 +36,7 @@ services:
       NGINX_ADMIN_IP: "${NGINX_ADMIN_IP}"
     volumes:
       - ./nginx/default.conf.template:/etc/nginx/templates/default.conf.template
-      - ./nginx/log:/var/log/nginx/
+      - ./log/nginx:/var/log/nginx
     ports:
       - "${NGINX_BACKEND_PORT}:${NGINX_PORT}"
     depends_on:
