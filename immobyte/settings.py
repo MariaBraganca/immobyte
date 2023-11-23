@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     
     # apps
-    'auctions'
+    'auctions',
+    'auctions_ai'
 ]
 
 MIDDLEWARE = [
