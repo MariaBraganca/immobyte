@@ -6,12 +6,37 @@
 {% endblock %}
 
 {% block content %}
-  <form method="post" class='max-w-md w-full mx-auto my-24'>
-    {% csrf_token %}
-    <div class='mt-4 grid grid-cols-3'>
-      <label for='{{ form.message.id_for_label }}' class='border-b border-gray-200 px-0 py-3 text-sm font-medium leading-6'><i class="fa-solid fa-magnifying-glass text-sky-500"></i></label>
-      {{ form.message|add_class:'col-span-2 border-0 border-b border-gray-200 px-0 py-3 text-sm font-light placeholder:text-gray-500 leading-6 focus:border-sky-500 focus:ring-0'|attr:'placeholder:Zwangsversteigerungen in Zehlendorf'|add_error_class:'mt-4 text-xs text-red-500' }}
-    </div>
-    <input type='submit' value='Los' class='w-full bg-sky-500 mt-14 mb-6 py-1.5 rounded-md text-sm text-white font-bold leading-6 hover:bg-sky-600'>
-  </form>
+  <textarea id="chat-log" cols="100" rows="20"></textarea>
+  <input id="chat-message-input" type="text" size="100" /><br />
+  <input id="chat-message-submit" type="submit" value="Los" />
+  <script>
+    const chatSocket = new WebSocket('ws://' + window.location.host + '/ws/chat/');
+    
+    chatSocket.onmessage = function (e) {
+      const data = JSON.parse(e.data);
+      document.querySelector('#chat-log').value += data.message + '\n';
+    }
+    
+    chatSocket.onclose = function (e) {
+      console.error('Chat socket closed unexpectedly');
+    }
+    
+    document.querySelector('#chat-message-input').onkeyup = function (e) {
+      if (e.key === 'Enter') {
+        document.querySelector('#chat-message-submit').click();
+      }
+    }
+    
+    document.querySelector('#chat-message-submit').onclick = function (e) {
+      const messageInputDom = document.querySelector('#chat-message-input');
+      const message = messageInputDom.value;
+      console.log('Sending message: ', message);
+      chatSocket.send(
+        JSON.stringify({
+          message: message
+        })
+      );
+      messageInputDom.value = '';
+    }
+  </script>
 {% endblock %}

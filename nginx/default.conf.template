@@ -17,6 +17,18 @@ server {
     access_log /var/log/nginx/immobyte.access.log;
   }
 
+  location /ws/chat/ {
+    # WebSocket proxying
+    proxy_pass http://immobyte_backend;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+
+    # logging
+    error_log /var/log/nginx/immobyte.ws.error.log;
+    access_log /var/log/nginx/immobyte.ws.access.log;
+  }
+
   location /admin {
     # access
     allow $NGINX_ADMIN_IP;

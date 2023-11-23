@@ -190,3 +190,5 @@ LOGGING = {
         },
     },
 }
+
+ASGI_APPLICATION = "immobyte.asgi.application"
