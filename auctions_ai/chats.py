@@ -1,63 +1,66 @@
-from django.contrib.auth.models import User
-from openai import OpenAI
 import os
-import time
+
+# from django.contrib.auth.models import User
+from openai import AsyncOpenAI
 
 class AssistedUserChat:
     """Attempt to model assisted user chats."""
-    
-    def __init__(self, user_id):
-        """Initalize user, client, assistant and thread."""
-        self.user = User.objects.get(pk=user_id)
-        self.client = OpenAI(api_key= os.getenv('OPENAI_API_KEY'))
-        self.assistant = self.client.beta.assistants.create(
+    @classmethod
+    async def create(cls, user_id):
+        self = cls()
+        self.client = AsyncOpenAI(api_key= os.getenv('OPENAI_API_KEY'))
+        self.assistant = await self.client.beta.assistants.create(
             name = 'Immobyte Assistant',
-            instructions = 'You are a real estate agent. Write and run code to sell real estate property.',
-            tools = [{'type': 'code_interpreter'}],
+            instructions = 'You are a real estate agent. Help and guide users to buy real estate property.',
+            tools = [{'type': 'retrieval'}],
             model = 'gpt-4-1106-preview'
         )
-        self.thread = self.client.beta.threads.create()
-        
-    def call(self, content):
+        self.thread = await self.client.beta.threads.create()
+        # TODO's:
+        # Asyncronous call to the database is causing a load error. Find out why.
+        # self.user = await User.objects.aget(pk=user_id)
+        self.user_id = user_id
+        return self
+
+    async def call(self, content):
         """Add message to thread."""
-        self.add_message(content)
-                
+        await self.add_message(content)
+
         """Run the assistant."""
-        run = self.run_assistant()
+        run_assistant = await self.run_assistant()
 
         """Enqueue the assistant's response."""
-        self.retrieve_assistant(run.id)
+        response = await self.retrieve_assistant(run_assistant.id)
 
-        time.sleep(3)
+        """Display the assistant's response."""
+        thread_messages = await self.read_thread_messages()
 
-        """List all thread messages"""
-        thread_messages = self.read_thread_messages()
-
+        # TODO's:
+        # At the moment all messages in the thread are being returned.
+        # Only the message of the assistant should be displayed.
+        # The message is available once the run has status complete.
+        # Loop until condition true.
         return [tm.content[0].text.value for tm in thread_messages.data]
 
-    def add_message(self, content):
-        self.client.beta.threads.messages.create(
+    async def add_message(self, content):
+        await self.client.beta.threads.messages.create(
             thread_id = self.thread.id,
             role = 'user',
             content = content
         )
-        
-    def run_assistant(self):
-        object = self.client.beta.threads.runs.create(
+
+    async def run_assistant(self):
+        return await self.client.beta.threads.runs.create(
             thread_id = self.thread.id,
             assistant_id = self.assistant.id,
-            instructions = f"Please address the user as {self.user.username}."
+            instructions = f"Please address the user by Immobyte-User for now."
         )
-        return object
-        
-    def retrieve_assistant(self, run_id):
-        object = self.client.beta.threads.runs.retrieve(
+
+    async def retrieve_assistant(self, run_id):
+        return await self.client.beta.threads.runs.retrieve(
             thread_id = self.thread.id,
             run_id = run_id
         )
-        return object
-    
-    def read_thread_messages(self):
-        list = self.client.beta.threads.messages.list(thread_id = self.thread.id)
-        
-        return list
+
+    async def read_thread_messages(self):
+        return await self.client.beta.threads.messages.list(thread_id = self.thread.id)
