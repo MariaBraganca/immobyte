@@ -1,4 +1,5 @@
 import os
+import asyncio
 
 # from django.contrib.auth.models import User
 from openai import AsyncOpenAI
@@ -29,18 +30,13 @@ class AssistedUserChat:
         """Run the assistant."""
         run_assistant = await self.run_assistant()
 
-        """Enqueue the assistant's response."""
-        response = await self.retrieve_assistant(run_assistant.id)
+        """Check the run status."""
+        await self.check_status(run_assistant.id)
 
         """Display the assistant's response."""
         thread_messages = await self.read_thread_messages()
 
-        # TODO's:
-        # At the moment all messages in the thread are being returned.
-        # Only the message of the assistant should be displayed.
-        # The message is available once the run has status complete.
-        # Loop until condition true.
-        return [tm.content[0].text.value for tm in thread_messages.data]
+        return thread_messages.data[0].content[0].text.value
 
     async def add_message(self, content):
         await self.client.beta.threads.messages.create(
@@ -61,6 +57,13 @@ class AssistedUserChat:
             thread_id = self.thread.id,
             run_id = run_id
         )
+
+    async def check_status(self, run_id):
+        while True:
+            run = await self.retrieve_assistant(run_id)
+            if run.status == 'completed':
+                break
+            await asyncio.sleep(1)
 
     async def read_thread_messages(self):
         return await self.client.beta.threads.messages.list(thread_id = self.thread.id)

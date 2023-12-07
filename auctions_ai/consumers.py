@@ -20,13 +20,15 @@ class ChatConsumer(AsyncWebsocketConsumer):
         pass
 
     async def receive(self, text_data):
-        """Send message back to Websocket"""
         text_data_json = json.loads(text_data)
         message = text_data_json["message"]
 
-        response = await self.process_message(message)
+        """Echo user's message."""
+        await self.send(text_data=json.dumps({"message": message, "sender": 'user'}))
 
-        await self.send(text_data=json.dumps({"message": response}))
+        """Echo assistant's message."""
+        response = await self.process_message(message)
+        await self.send(text_data=json.dumps({"message": response, "sender": 'assistant'}))
 
     async def process_message(self, message):
         """Process the message through AssistedUserChat."""
