@@ -6,9 +6,12 @@ from openai import AsyncOpenAI
 
 class AssistedUserChat:
     """Attempt to model assisted user chats."""
+
     @classmethod
     async def create(cls, user_id):
         self = cls()
+        # TODO's:
+        # Move client's credentials out of this class.
         self.client = AsyncOpenAI(api_key= os.getenv('OPENAI_API_KEY'))
         self.assistant = await self.client.beta.assistants.create(
             name = 'Immobyte Assistant',

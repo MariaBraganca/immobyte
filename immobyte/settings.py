@@ -191,4 +191,4 @@ LOGGING = {
     },
 }
 
-ASGI_APPLICATION = "immobyte.asgi.application"
+ASGI_APPLICATION = 'immobyte.asgi.application'
