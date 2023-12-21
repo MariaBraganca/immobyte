@@ -9,3 +9,7 @@ accesslog = "/opt/immobyte/log/gunicorn.immobyte.access.log"
 errorlog = "/opt/immobyte/log/gunicorn.immobyte.error.log"
 # How verbose the Gunicorn error logs should be
 loglevel = os.getenv('GUNICORN_LOG_LEVEL', 'info')
+# Restart workers when code changes
+reload = os.getenv('GUNICORN_RELOAD', False) == 'True'
+# Reload on additional files (eg. templates)
+reload_extra_files = os.getenv('GUNICORN_RELOAD_EXTRA_FILES', './static/templates/base.html').split(',')
