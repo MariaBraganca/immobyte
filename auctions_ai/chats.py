@@ -44,19 +44,24 @@ class AssistedUserChat:
         run_assistant = await self.run_assistant()
         if run_assistant:
             return await self.check_status_completed(run_assistant.id)
+        else:
+            logger.warning("Unable to process assistant's response.")
 
-        logger.warning("Unable to process assistant's response.")
-        return False
+        return None
 
     async def parse_assistant_response(self):
         thread_messages = await self.read_thread_messages()
-        try:
-            # TODO's:
-            # Add parser for thread messages.
-            return thread_messages.data[0].content[0].text.value
-        except (IndexError, AttributeError):
-            logger.exception("Unexpected message structure.")
-            return None
+        if thread_messages:
+            try:
+                # TODO's:
+                # Add parser to read thread message.
+                return thread_messages.data[0].content[0].text.value
+            except (IndexError, AttributeError):
+                logger.exception("Unexpected thread message structure.")
+        else:
+            logger.warning("Unable to read thread messages.")
+
+        return None
 
     @log_openai_error
     async def add_user_message(self, content):
