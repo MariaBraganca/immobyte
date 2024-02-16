@@ -6,9 +6,6 @@ from auctions_ai.chats import AssistedUserChat
 
 # Fixtures
 # -----------------------------------------------------------------------------------------------
-# NOTE:
-# Setting fixture scope from function to module messes up with the await count assertions
-
 @pytest.fixture
 def patched_openai():
     with patch('auctions_ai.chats.AsyncOpenAI', AsyncMock) as mock_openai:
