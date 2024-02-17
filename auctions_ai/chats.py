@@ -7,6 +7,7 @@ from auctions_ai.decorators import log_openai_error
 
 logger = logging.getLogger(__name__)
 
+
 class AssistedUserChat:
     """Attempt to model assisted user chats."""
 
@@ -16,10 +17,10 @@ class AssistedUserChat:
         self = cls()
         self.client = AsyncOpenAI(max_retries=2, timeout=300.0)
         self.assistant = await self.client.beta.assistants.create(
-            name = 'Immobyte Assistant',
-            instructions = 'You are a real estate agent. Help and guide users to buy real estate property.',
-            tools = [{'type': 'retrieval'}],
-            model = 'gpt-4-1106-preview'
+            name="Immobyte Assistant",
+            instructions="You are a real estate agent. Help and guide users to buy real estate property.",
+            tools=[{"type": "retrieval"}],
+            model="gpt-4-1106-preview",
         )
         self.thread = await self.client.beta.threads.create()
         # TODO's:
@@ -37,8 +38,11 @@ class AssistedUserChat:
 
         response = await self.parse_assistant_response()
 
-        return response if response else "Immobyte's Assistant failed to parse a response. Please try again later."
-
+        return (
+            response
+            if response
+            else "Immobyte's Assistant failed to parse a response. Please try again later."
+        )
 
     async def process_assistant_response(self):
         run_assistant = await self.run_assistant()
@@ -66,33 +70,30 @@ class AssistedUserChat:
     @log_openai_error
     async def add_user_message(self, content):
         await self.client.beta.threads.messages.create(
-            thread_id = self.thread.id,
-            role = 'user',
-            content = content
+            thread_id=self.thread.id, role="user", content=content
         )
 
     @log_openai_error
     async def run_assistant(self):
         return await self.client.beta.threads.runs.create(
-            thread_id = self.thread.id,
-            assistant_id = self.assistant.id,
+            thread_id=self.thread.id,
+            assistant_id=self.assistant.id,
         )
 
     @log_openai_error
     async def retrieve_assistant(self, run_id):
         return await self.client.beta.threads.runs.retrieve(
-            thread_id = self.thread.id,
-            run_id = run_id
+            thread_id=self.thread.id, run_id=run_id
         )
 
     # TODO's:
     # Add an exponential backoff instead of a fixed interval for retries.
-    async def check_status_completed(self, run_id, max_retries = 10, interval = 5):
+    async def check_status_completed(self, run_id, max_retries=10, interval=5):
         retries = 0
         while retries <= max_retries:
             run = await self.retrieve_assistant(run_id)
             try:
-                if run.status == 'completed':
+                if run.status == "completed":
                     return True
             except AttributeError:
                 logger.exception("Unable to check run status.")
@@ -105,4 +106,4 @@ class AssistedUserChat:
 
     @log_openai_error
     async def read_thread_messages(self):
-        return await self.client.beta.threads.messages.list(thread_id = self.thread.id)
+        return await self.client.beta.threads.messages.list(thread_id=self.thread.id)
