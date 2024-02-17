@@ -13,7 +13,7 @@ ARG NODE_MAJOR=20
 RUN groupadd --gid $USER_GID $USERNAME
 RUN useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
 
-# Set environment variables  
+# Set environment variables
 # Keeps Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE 1
 # Turns off buffering for easier container logging
@@ -39,7 +39,7 @@ RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY --chown=$USERNAME:$USERNAME . .
- 
+
 # Use non-root user
 USER $USERNAME
 
