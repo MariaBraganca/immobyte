@@ -7,24 +7,31 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Auction',
+            name="Auction",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('number', models.CharField(max_length=20)),
-                ('court', models.CharField(max_length=200)),
-                ('object', models.CharField(max_length=200)),
-                ('address', models.CharField(max_length=200)),
-                ('price', models.DecimalField(decimal_places=2, max_digits=12)),
-                ('appointment', models.DateTimeField()),
-                ('description', models.TextField()),
-                ('report_url', models.CharField(max_length=200)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("number", models.CharField(max_length=20)),
+                ("court", models.CharField(max_length=200)),
+                ("object", models.CharField(max_length=200)),
+                ("address", models.CharField(max_length=200)),
+                ("price", models.DecimalField(decimal_places=2, max_digits=12)),
+                ("appointment", models.DateTimeField()),
+                ("description", models.TextField()),
+                ("report_url", models.CharField(max_length=200)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
             ],
         ),
     ]
