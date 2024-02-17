@@ -5,7 +5,7 @@ upstream immobyte_backend {
 server {
   listen $NGINX_PORT;
   server_name immobyte.de www.immobyte.de;
-  
+
   location / {
     # reverse proxy
     proxy_set_header Host $host;
