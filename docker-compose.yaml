@@ -6,10 +6,8 @@ services:
       POSTGRES_USER: "${DATABASE_USER}"
       POSTGRES_DATABASE: "${DATABASE_NAME}"
       POSTGRES_PASSWORD: "${DATABASE_PASSWORD}"
-    command: postgres -c log_statement=all -c log_directory=/var/log/postgresql -c logging_collector=on
     volumes:
       - immobyte-db-data:/var/lib/postgresql/data
-      - ./log/postgresql:/var/log/postgresql
     ports:
       - "${DATABASE_PORT}:${DATABASE_PORT}"
   web:
@@ -20,26 +18,12 @@ services:
     env_file:
       - .env
     user: "${USER_ID}:${GROUP_ID}"
-    command: gunicorn immobyte.asgi:application -k uvicorn.workers.UvicornWorker
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/opt/immobyte
-    expose:
-      - ${DJANGO_PORT}
+    ports:
+      - "${DJANGO_PORT}:${DJANGO_PORT}"
     depends_on:
       - db
-  nginx:
-    image: "nginx:${NGINX_VERSION}"
-    environment:
-      NGINX_PORT: "${NGINX_PORT}"
-      NGINX_BACKEND_SERVER: "${NGINX_BACKEND_SERVER}"
-      NGINX_BACKEND_PORT: "${NGINX_BACKEND_PORT}"
-      NGINX_ADMIN_IP: "${NGINX_ADMIN_IP}"
-    volumes:
-      - ./nginx/default.conf.template:/etc/nginx/templates/default.conf.template
-      - ./log/nginx:/var/log/nginx
-    ports:
-      - "${NGINX_BACKEND_PORT}:${NGINX_PORT}"
-    depends_on:
-      - web
 volumes:
   immobyte-db-data:
