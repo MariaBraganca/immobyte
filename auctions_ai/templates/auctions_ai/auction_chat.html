@@ -6,15 +6,28 @@
 {% endblock %}
 
 {% block content %}
-  <textarea id="chat-log" cols="100" rows="20"></textarea>
-  <input id="chat-message-input" type="text" size="100" /><br />
-  <input id="chat-message-submit" type="submit" value="Los" />
+  <div class="block max-w-3xl w-full mx-auto">
+    <div id="chat-log" class="min-h-48 max-h-96 overflow-y-auto"></div>
+    <div class="flex items-center">
+      <input id="chat-message-input" type="text" placeholder="Stelle Immobyte-GPT eine Frage z.B. Ich suche nach einer Immobilie in Berlin-Zehlendorf." class='block w-full border-0 border-b border-gray-200 text-sm font-light leading-6 placeholder:text-gray-500 indent-3 focus:border-sky-500 focus:ring-0'>
+      <input id="chat-message-submit" type="submit" value="">
+    </div>
+  </div>
+
   <script>
     const chatSocket = new WebSocket('ws://' + window.location.host + '/ws/chat/');
 
     chatSocket.onmessage = function (e) {
       const data = JSON.parse(e.data);
-      document.querySelector('#chat-log').value += data.message + '\n';
+      var messageContent = `<div class="flex items-baseline mb-3">
+                              <p><i class="fa-solid fa-circle pr-3 text-sm text-${data.avatar}-500"></i></p>
+                              <div>
+                                <p class="text-sm font-semibold leading-6">${data.sender}</p>
+                                <p class="text-sm">${data.message}</p>
+                              </div>
+                            </div>`;
+
+      document.querySelector('#chat-log').insertAdjacentHTML('beforeend', messageContent);
     }
 
     chatSocket.onclose = function (e) {
