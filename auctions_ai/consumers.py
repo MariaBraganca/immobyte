@@ -26,14 +26,16 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         """Echo user's message."""
         await self.send(
-            text_data=json.dumps({"message": message, "sender": "Du", "avatar": "gray"})
+            text_data=json.dumps(
+                {"message": message, "sender": "Du", "avatar": "gray-300"}
+            )
         )
 
         """Echo assistant's message."""
         response = await self.process_message(message)
         await self.send(
             text_data=json.dumps(
-                {"message": response, "sender": "Immobyte-GPT", "avatar": "sky"}
+                {"message": response, "sender": "Immobyte-GPT", "avatar": "sky-500"}
             )
         )
 

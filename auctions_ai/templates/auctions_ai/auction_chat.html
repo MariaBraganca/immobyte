@@ -7,10 +7,12 @@
 
 {% block content %}
   <div class="block max-w-3xl w-full mx-auto">
-    <div id="chat-log" class="min-h-48 max-h-96 overflow-y-auto"></div>
+    <div id="chat-log" class="min-h-48 max-h-128 overflow-y-auto"></div>
     <div class="flex items-center">
       <input id="chat-message-input" type="text" placeholder="Stelle Immobyte-GPT eine Frage z.B. Ich suche nach einer Immobilie in Berlin-Zehlendorf." class='block w-full border-0 border-b border-gray-200 text-sm font-light leading-6 placeholder:text-gray-500 indent-3 focus:border-sky-500 focus:ring-0'>
-      <input id="chat-message-submit" type="submit" value="">
+      <button id="chat-message-submit" type="submit">
+        <i class="fa-solid fa-circle-arrow-up pl-3 text-gray-300 hover:text-sky-500"></i>
+      </button>
     </div>
   </div>
 
@@ -20,7 +22,7 @@
     chatSocket.onmessage = function (e) {
       const data = JSON.parse(e.data);
       var messageContent = `<div class="flex items-baseline mb-3">
-                              <p><i class="fa-solid fa-circle pr-3 text-sm text-${data.avatar}-500"></i></p>
+                              <p><i class="fa-solid fa-circle pr-3 text-sm text-${data.avatar}"></i></p>
                               <div>
                                 <p class="text-sm font-semibold leading-6">${data.sender}</p>
                                 <p class="text-sm">${data.message}</p>

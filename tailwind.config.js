@@ -6,7 +6,11 @@ module.exports = {
     './auctions_ai/templates/**/*.{html,js}'
   ],
   theme: {
-    extend: {}
+    extend: {
+      maxHeight: {
+        '128': '32rem'
+      }
+    }
   },
   plugins: [
     require('@tailwindcss/forms')
