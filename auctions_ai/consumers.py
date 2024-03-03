@@ -15,11 +15,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
     """Simple websocket echo server."""
 
     USER = "Du"
-    USER_COLOR = "gray-300"
     IMMOBYTE = "Immobyte-GPT"
-    IMMOBYTE_COLOR = "sky-500"
-    SYSTEM = "System"
-    SYSTEM_COLOR = "black"
 
     INCOMING_MESSAGE_SCHEMA = {
         "type": "object",
@@ -30,7 +26,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         """Accepts and closes a connection depending on user authentication."""
         if self.scope["user"].is_authenticated:
-            self.assisted_chat = await AssistedUserChat.create(self.scope["user"].id)
             await self.accept()
         else:
             await self.close(code=403)  # Forbidden
@@ -49,9 +44,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         # extracts and echoes user message
         user_message = text_data_json.get("message")
-        await self.send_json(
-            {"message": user_message, "sender": self.USER, "avatar": self.USER_COLOR}
-        )
+        await self.send_json({"message": user_message, "sender": self.USER})
 
         # processes and validates assistant's response
         assistant_message = await self.process_message(user_message)
@@ -66,7 +59,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
             {
                 "message": assistant_message,
                 "sender": self.IMMOBYTE,
-                "avatar": self.IMMOBYTE_COLOR,
             }
         )
 
@@ -109,7 +101,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
     async def process_message(self, message):
         """Process the message through AssistedUserChat."""
         try:
-            return await self.assisted_chat.call(message)
+            assisted_chat = await AssistedUserChat.create(self.scope["user"].id)
+            return await assisted_chat.call(message)
         except Exception as error:
             logger.exception(
                 f"Unexpected {error=}, {type(error)=}. Failed to process message: {message}",
@@ -122,7 +115,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
         await self.send_json(
             {
                 "message": f"Error: {error_message}.",
-                "sender": self.SYSTEM,
-                "avatar": self.SYSTEM_COLOR,
+                "sender": self.IMMOBYTE,
             }
         )

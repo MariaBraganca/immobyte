@@ -21,8 +21,12 @@
 
     chatSocket.onmessage = function (e) {
       const data = JSON.parse(e.data);
+      var avatarColors = {
+        'Du': 'gray-300',
+        'Immobyte-GPT': 'sky-500'
+      };
       var messageContent = `<div class="flex items-baseline mb-3">
-                              <p><i class="fa-solid fa-circle pr-3 text-sm text-${data.avatar}"></i></p>
+                              <p><i class="fa-solid fa-circle pr-3 text-sm text-${avatarColors[data.sender]}"></i></p>
                               <div>
                                 <p class="text-sm font-semibold leading-6">${data.sender}</p>
                                 <p class="text-sm">${data.message}</p>
