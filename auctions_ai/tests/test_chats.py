@@ -161,9 +161,9 @@ class TestAssistedUserChatFunctionality:
         patched_openai.beta.threads.runs.create.return_value = run_object
         patched_openai.beta.threads.runs.retrieve.return_value = run_status
 
-        # Set arguments: max_retries = 1, interval = 0
+        # Set arguments: max_retries = 1, base_interval = 0, backoff_interval = 0
         status_completed = await assisted_user_chat.check_status_completed(
-            run_object.id, 1, 0
+            run_object.id, 1, 0, 0
         )
 
         assert log_messages == caplog.messages

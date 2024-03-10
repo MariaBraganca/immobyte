@@ -86,19 +86,25 @@ class AssistedUserChat:
             thread_id=self.thread.id, run_id=run_id
         )
 
-    # TODO's:
-    # Add an exponential backoff instead of a fixed interval for retries.
-    async def check_status_completed(self, run_id, max_retries=10, interval=5):
+    async def check_status_completed(
+        self,
+        run_id,
+        max_retries=10,
+        base_interval=1,
+        backoff_interval=2,
+    ):
         retries = 0
+        interval = base_interval
         while retries <= max_retries:
             run = await self.retrieve_assistant(run_id)
             try:
                 if run.status == "completed":
                     return True
-            except AttributeError:
+            except (NameError, AttributeError):
                 logger.exception("Unable to check run status.")
 
             await asyncio.sleep(interval)
+            interval = min(base_interval * (backoff_interval**retries), 60)
             retries += 1
 
         logger.warning("Reached maximum retries to check run status.")
