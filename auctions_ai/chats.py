@@ -1,7 +1,8 @@
 import logging
 import asyncio
 
-# from django.contrib.auth.models import User
+from django.contrib.auth.models import User
+from channels.db import database_sync_to_async
 from openai import AsyncOpenAI
 from auctions_ai.decorators import log_openai_error
 
@@ -15,18 +16,17 @@ class AssistedUserChat:
     async def create(cls, user_id):
         """Initializes an instance of AssistedUserChat asynchronously."""
         self = cls()
+        self.user = await database_sync_to_async(User.objects.get)(pk=user_id)
         self.client = AsyncOpenAI(max_retries=2, timeout=300.0)
         self.assistant = await self.client.beta.assistants.create(
-            name="Immobyte Assistant",
-            instructions="You are a real estate agent. Help and guide users to buy real estate property.",
+            name="Immobyte-GPT",
+            instructions=f"""You are a real estate agent. Your job is to help and guide users to buy real estate property.
+                You are polite and have excellent communication skills. The current user is called {self.user.username}.
+                Always greet and address users by their name.""",
             tools=[{"type": "retrieval"}],
             model="gpt-4-1106-preview",
         )
         self.thread = await self.client.beta.threads.create()
-        # TODO's:
-        # Asyncronous call to the database is causing a load error. Find out why.
-        # self.user = await User.objects.aget(pk=user_id)
-        self.user_id = user_id
         return self
 
     async def call(self, content):

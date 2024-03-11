@@ -4,6 +4,10 @@ import openai
 from unittest.mock import AsyncMock, MagicMock, patch
 from auctions_ai.chats import AssistedUserChat
 
+# TODO's:
+# 1. AssistedUserChat makes a DB call to get the user: adjust the tests
+# 2. Move the classes into separate files and make the fixtures shareable
+
 
 # Fixtures
 # -----------------------------------------------------------------------------------------------
