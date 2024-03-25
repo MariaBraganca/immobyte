@@ -4,7 +4,7 @@ services:
     restart: always
     environment:
       POSTGRES_USER: "${DATABASE_USER}"
-      POSTGRES_DATABASE: "${DATABASE_NAME}"
+      POSTGRES_DB: "${DATABASE_NAME}"
       POSTGRES_PASSWORD: "${DATABASE_PASSWORD}"
     volumes:
       - immobyte-db-data:/var/lib/postgresql/data

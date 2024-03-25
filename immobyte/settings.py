@@ -90,10 +90,14 @@ DATABASES = {
             os.getenv("DATABASE_ENGINE", "postgresql")
         ),
         "NAME": os.getenv("DATABASE_NAME", "postgres"),
-        "USER": os.getenv("DATABASE_USERNAME", "postgres"),
+        "USER": os.getenv("DATABASE_USER", "postgres"),
         "PASSWORD": os.getenv("DATABASE_PASSWORD", "password"),
         "HOST": os.getenv("DATABASE_HOST", "127.0.0.1"),
         "PORT": os.getenv("DATABASE_PORT", 5432),
+        "TEST": {
+            "NAME": os.getenv("TEST_DATABASE_NAME", "test_postgres"),
+            "MIGRATE": os.getenv("TEST_DATABASE_MIGRATE", False) == "True",
+        },
     }
 }
 
