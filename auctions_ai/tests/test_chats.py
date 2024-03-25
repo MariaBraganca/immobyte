@@ -1,11 +1,15 @@
 import pytest
 import pytest_asyncio
 import openai
+
 from unittest.mock import AsyncMock, MagicMock, patch
 from auctions_ai.chats import AssistedUserChat
+from auctions_ai.tests.factories import UserFactory
+from asgiref.sync import sync_to_async
+
 
 # TODO's:
-# 1. AssistedUserChat makes a DB call to get the user: adjust the tests
+# 1. AssistedUserChat should only be called once
 # 2. Move the classes into separate files and make the fixtures shareable
 
 
@@ -27,11 +31,12 @@ def patched_openai():
 
 
 @pytest_asyncio.fixture
-async def assisted_user_chat(patched_openai):
+async def assisted_user_chat(db, patched_openai):
     patched_openai.beta.assistants.create.return_value = MagicMock(id=1)
     patched_openai.beta.threads.create.return_value = MagicMock(id=2)
 
-    return await AssistedUserChat.create(100)
+    test_user = await sync_to_async(UserFactory)()
+    return await AssistedUserChat.create(test_user.id)
 
 
 # Assisted User Chat Functionality
@@ -41,7 +46,7 @@ class TestAssistedUserChatFunctionality:
     async def test_create_assisted_user_chat(self, patched_openai, assisted_user_chat):
         """Tests the initialization of an assisted user chat object."""
         assert isinstance(assisted_user_chat, AssistedUserChat)
-        assert assisted_user_chat.user_id == 100
+        assert assisted_user_chat.user.username == "user0"
         assert assisted_user_chat.assistant.id == 1
         assert assisted_user_chat.thread.id == 2
 
