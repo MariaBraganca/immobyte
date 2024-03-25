@@ -22,6 +22,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("auctions.urls")),
+    path("", include("auctions_ai.urls")),
     path("login", LoginView.as_view()),
     path("logout", LogoutView.as_view(), name="immobyte.logout"),
 ]

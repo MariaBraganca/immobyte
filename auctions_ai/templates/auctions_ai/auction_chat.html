@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block navheader %}
+  <p class="text-sm font-light text-gray-500 mt-1">ChatGPT zur Zwangsversteigerung</p>
+{% endblock %}
+
+{% block content %}
+  <div class="block max-w-3xl w-full mx-auto">
+    <div id="chat-log" class="min-h-48 max-h-128 overflow-y-auto"></div>
+    <div class="flex items-center">
+      <input id="chat-message-input" type="text" placeholder="Stelle Immobyte-GPT eine Frage z.B. Ich suche nach einer Immobilie in Berlin-Zehlendorf." class='block w-full border-0 border-b border-gray-200 text-sm font-light leading-6 placeholder:text-gray-500 indent-3 focus:border-sky-500 focus:ring-0'>
+      <button id="chat-message-submit" type="submit">
+        <i class="fa-solid fa-circle-arrow-up pl-3 text-gray-300 hover:text-sky-500"></i>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const chatSocket = new WebSocket('ws://' + window.location.host + '/ws/chat/');
+
+    chatSocket.onmessage = function (e) {
+      const data = JSON.parse(e.data);
+      var avatarColors = {
+        'Du': 'gray-300',
+        'Immobyte-GPT': 'sky-500'
+      };
+      var messageContent = `<div class="flex items-baseline mb-3">
+                              <p><i class="fa-solid fa-circle pr-3 text-sm text-${avatarColors[data.sender]}"></i></p>
+                              <div>
+                                <p class="text-sm font-semibold leading-6">${data.sender}</p>
+                                <p class="text-sm">${data.message}</p>
+                              </div>
+                            </div>`;
+
+      document.querySelector('#chat-log').insertAdjacentHTML('beforeend', messageContent);
+    }
+
+    chatSocket.onclose = function (e) {
+      console.error('Chat socket closed unexpectedly');
+    }
+
+    document.querySelector('#chat-message-input').onkeyup = function (e) {
+      if (e.key === 'Enter') {
+        document.querySelector('#chat-message-submit').click();
+      }
+    }
+
+    document.querySelector('#chat-message-submit').onclick = function (e) {
+      const messageInputDom = document.querySelector('#chat-message-input');
+      const message = messageInputDom.value;
+      console.log('Sending message: ', message);
+      chatSocket.send(
+        JSON.stringify({
+          message: message
+        })
+      );
+      messageInputDom.value = '';
+    }
+  </script>
+{% endblock %}

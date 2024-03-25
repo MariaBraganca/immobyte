@@ -18,6 +18,8 @@ RUN useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
 ENV PYTHONDONTWRITEBYTECODE 1
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED 1
+# Appends working directory to python path
+ENV PYTHONPATH "${PYTHONPATH}:${APP_PATH}"
 
 # Node.js
 # Download and import the Nodesource GPG key
@@ -43,4 +45,4 @@ USER $USERNAME
 
 EXPOSE 8000
 
-CMD ["gunicorn", "immobyte.wsgi:application"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

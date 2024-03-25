@@ -38,11 +38,14 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "daphne",
     "django.contrib.staticfiles",
+    "channels",
     "storages",
     "widget_tweaks",
     # apps
     "auctions",
+    "auctions_ai",
 ]
 
 MIDDLEWARE = [
@@ -87,10 +90,14 @@ DATABASES = {
             os.getenv("DATABASE_ENGINE", "postgresql")
         ),
         "NAME": os.getenv("DATABASE_NAME", "postgres"),
-        "USER": os.getenv("DATABASE_USERNAME", "postgres"),
+        "USER": os.getenv("DATABASE_USER", "postgres"),
         "PASSWORD": os.getenv("DATABASE_PASSWORD", "password"),
         "HOST": os.getenv("DATABASE_HOST", "127.0.0.1"),
         "PORT": os.getenv("DATABASE_PORT", 5432),
+        "TEST": {
+            "NAME": os.getenv("TEST_DATABASE_NAME", "test_postgres"),
+            "MIGRATE": os.getenv("TEST_DATABASE_MIGRATE", False) == "True",
+        },
     }
 }
 
@@ -187,3 +194,5 @@ LOGGING = {
         },
     },
 }
+
+ASGI_APPLICATION = "immobyte.asgi.application"
